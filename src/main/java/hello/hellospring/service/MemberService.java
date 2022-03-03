@@ -2,16 +2,19 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class MemberService  {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+public class MemberService {
+    private final MemberRepository memberRepository;
 
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     // 서비스는 비지니스 로직에 맞게 네이밍을 사용하는게 좋다.
+
     /**
      * 회원가입
      */
