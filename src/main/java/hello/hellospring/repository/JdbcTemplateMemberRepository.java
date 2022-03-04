@@ -17,7 +17,6 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 
     private final JdbcTemplate jdbcTemplate; //인젝션을 받을 수 없다.
 
-    @Autowired
     public JdbcTemplateMemberRepository(DataSource dataSource) { //직접 선언해서 dataSource를 넣어줘야된다.
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -37,7 +36,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> finById(Long id) {
+    public Optional<Member> findById(Long id) {
         List<Member> result = jdbcTemplate.query("select * from MEMBER where id =  ?", memberRowMapper(), id);
         return result.stream().findAny();
     }
